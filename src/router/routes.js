@@ -6,6 +6,7 @@ import App from '../App.vue'
 import Router from 'vue-router'
 import Vue from 'vue'
 import home from '../pages/home/home.vue'
+import login from '../pages/login/login.vue'
 
 Vue.use(Router)
 
@@ -28,6 +29,10 @@ export default new Router({
     {
       path: '/home',
       component: home
+    },
+    {
+      path: '/login',
+      component: login
     }
   ]
 })
