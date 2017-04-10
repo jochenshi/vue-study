@@ -19,9 +19,13 @@ export default async (type = 'GET', url = '', data = {}) => {
       url = url + '?' + dataStr
     }
   }
+  
   let requestObj
   if (window.XMLHttpRequest) {
     requestObj = new XMLHttpRequest()
+  } else {
+    alert('Sorry, your browser does not support this!')
+    return false
   }
   let sendData = ''
   if (type === 'POST') {
@@ -35,9 +39,9 @@ export default async (type = 'GET', url = '', data = {}) => {
     if (requestObj.readyState === 4) {
       if (requestObj.status === 200) {
         let obj = requestObj.response
+        console.log(typeof obj)
         if (typeof obj !== 'object') {
           console.log(obj)
-          obj = JSON.parse(obj)
         }
         return obj
       } else {

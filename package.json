@@ -15,7 +15,8 @@
   "dependencies": {
     "element-ui": "^1.2.8",
     "vue": "^2.2.2",
-    "vue-router": "^2.2.0"
+    "vue-router": "^2.2.0",
+    "vuex": "^2.2.1"
   },
   "devDependencies": {
     "autoprefixer": "^6.7.2",
@@ -62,7 +63,6 @@
     "sinon-chai": "^2.8.0",
     "inject-loader": "^2.0.1",
     "babel-plugin-istanbul": "^3.1.2",
-    "phantomjs-prebuilt": "^2.1.14",
     "chromedriver": "^2.27.2",
     "cross-spawn": "^5.0.1",
     "nightwatch": "^0.9.12",

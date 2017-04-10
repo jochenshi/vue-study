@@ -7,4 +7,6 @@ var checkLogin = (username, password) => {
   fetch('POST', '/v2/login', {username, password})
 }
 
-export {checkLogin}
+var getUser = () => fetch('GET', '/v1/user', {})
+
+export {checkLogin, getUser}
