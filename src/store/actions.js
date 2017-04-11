@@ -7,8 +7,13 @@ import * as types from './mutation-types'
 
 export default {
   
-  async getUserInfo ({commit, state}) {
-    let res = await getUser()
-    commit(types.GET_USERINFO, res)
+  getUserInfo ({commit, state}) {
+    getUser().then((data) => {
+      commit(types.GET_USERINFO, data)
+    }, (error) => {
+      if (error) {
+        console.error('error:', 'error')
+      }
+    })
   }
 }

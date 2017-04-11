@@ -5,9 +5,13 @@ import router from './router/routes'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-default/index.css'
 import store from './store'
+import Messages from './components/message/main'
 
 Vue.config.productionTip = false
 Vue.use(ElementUI)
+Vue.component(Messages.name, Messages)
+Vue.prototype.$message = Messages
+
 new Vue({
   router,
   store

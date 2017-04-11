@@ -2,6 +2,7 @@
   <div>
     <head-top signin-up='home'>
       <span slot="logo" class="head_logo">Title</span>
+      <span slot="menu">menu1</span>
     </head-top>
   </div>
 </template>
