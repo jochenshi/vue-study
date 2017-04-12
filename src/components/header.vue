@@ -40,7 +40,7 @@
         this.$messages({
           message: '这是一条提示消息！',
           showClose: true,
-          type: 'success'
+          type: 'info'
         })
       }
     }

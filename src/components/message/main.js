@@ -6,7 +6,8 @@ let MessageConstructor = Vue.extend(require('./main.vue'))
 
 let instance
 let instances = []
-let seed = 1
+let seed = 1 // 为每个实例生成一个id
+
 var Messages = function (options) {
   options = options || {}
   if (typeof options === 'string') {
@@ -15,26 +16,26 @@ var Messages = function (options) {
     }
   }
   
-/*  let id = 'message_' + seed++
+  let id = 'message_' + seed++
   let userOnClose = options.onClose
   
   options.onClose = function () {
     Messages.close(id, userOnClose)
-  } */
+  } 
   
   instance = new MessageConstructor({
     data: options
   })
-  // instance.id = id
+  instance.id = id
   instance.vm = instance.$mount()
   document.body.appendChild(instance.vm.$el)
   instance.vm.visible = true
   instance.dom = instance.vm.$el
   instances.push(instance)
   return instance.vm
-};
+}
 
-['success', 'warning', 'info', 'error'].forEach(type => {
+/* ['success', 'warning', 'info', 'error'].forEach(type => {
   Messages[type] = options => {
     if (typeof options === 'string') {
       options = {
@@ -44,15 +45,16 @@ var Messages = function (options) {
     options.type = type
     return Messages(options)
   }
-})
+}) */
 
-/** Messages.close = function (id, userOnClose) {
+// 
+Messages.close = function (id, userOnClose) {
   for (let i = 0; i < instances.length; i++) {
     if (id === instances[i].id) {
       if (typeof userOnClose === 'function') {
         userOnClose(instances[i])
       }
-      instances.splice(i, 1)
+      instances.splice(i, 1) // 从instances中删除当前指定的instance
       break
     }
   }
@@ -61,6 +63,6 @@ Messages.closeAll = function () {
   for (let i = instances.length - 1; i >= 0; i--) {
     instances[i].close()
   }
-} */
+} 
 
 export default Messages
