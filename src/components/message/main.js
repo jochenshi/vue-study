@@ -15,17 +15,17 @@ var Messages = function (options) {
     }
   }
   
-  let id = 'message_' + seed++
+/*  let id = 'message_' + seed++
   let userOnClose = options.onClose
   
   options.onClose = function () {
     Messages.close(id, userOnClose)
-  }
+  } */
   
   instance = new MessageConstructor({
     data: options
   })
-  instance.id = id
+  // instance.id = id
   instance.vm = instance.$mount()
   document.body.appendChild(instance.vm.$el)
   instance.vm.visible = true
@@ -46,7 +46,7 @@ var Messages = function (options) {
   }
 })
 
-Messages.close = function (id, userOnClose) {
+/** Messages.close = function (id, userOnClose) {
   for (let i = 0; i < instances.length; i++) {
     if (id === instances[i].id) {
       if (typeof userOnClose === 'function') {
@@ -61,6 +61,6 @@ Messages.closeAll = function () {
   for (let i = instances.length - 1; i >= 0; i--) {
     instances[i].close()
   }
-}
+} */
 
 export default Messages

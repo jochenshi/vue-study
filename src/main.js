@@ -6,11 +6,12 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-default/index.css'
 import store from './store'
 import Messages from './components/message/main'
+import './assets/fonts/css/font-awesome.min.css'
 
 Vue.config.productionTip = false
 Vue.use(ElementUI)
 Vue.component(Messages.name, Messages)
-Vue.prototype.$message = Messages
+Vue.prototype.$messages = Messages
 
 new Vue({
   router,
