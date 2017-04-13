@@ -48,7 +48,7 @@
 </script>
 
 <style scoped>
-  #header_top{
+  #header_top{ 
     background-color: #42b983;
     position: fixed;
     left: 0;
