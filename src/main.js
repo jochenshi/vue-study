@@ -8,7 +8,7 @@ import store from './store'
 import Messages from './components/message/main'
 import './assets/fonts/css/font-awesome.min.css'
 
-Vue.config.productionTip = false
+Vue.config.productionTip = true
 Vue.use(ElementUI)
 Vue.component(Messages.name, Messages)
 Vue.prototype.$messages = Messages
