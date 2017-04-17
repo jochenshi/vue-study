@@ -1,8 +1,14 @@
 <template>
   <label class="sel-checkbox">
-    <span class="sel-checkbox-wrapper">
+    <span class="sel-checkbox-wrapper" 
+          :class="{
+            'is-disabled': disabled
+          }">
       <span class="sel-checkbox-hook"></span>
-      <input type="checkbox" class="sel-checkbox-input" @click="checkClick($event)">
+      <input type="checkbox" 
+             class="sel-checkbox-input" 
+             @click="checkClick($event)" 
+             v-model="model" >
     </span>
     <span class="check-text" v-if="text">{{text}}</span>
   </label>
@@ -13,6 +19,12 @@
       return {
         text: '多选框'
       }
+    },
+    props: {
+      disabled: Boolean,
+      checked: Boolean,
+      label: {},
+      value: {}
     },
     methods: {
       checkClick ($event) {
@@ -42,6 +54,18 @@
     height: 14px;
     display: inline-block;
     border-radius: 3px;
+  }
+  .sel-checkbox-hook:after{
+    border: 2px solid #ffffff;
+    width: 5px;
+    height: 8px;
+    transform: rotate(45deg) scale(1);
+    content: ' ';
+    border-top: 0;
+    border-left: 0;
+    position: absolute;
+    top: 1px;
+    left: 4px;
   }
   .sel-checkbox-input{
     position: absolute;
