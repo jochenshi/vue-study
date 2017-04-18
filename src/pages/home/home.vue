@@ -9,7 +9,7 @@
     </el-row>
     <div class="content">
       <grid-table></grid-table>
-      <sel-checkbox></sel-checkbox>
+      <sel-checkbox v-model="checked1" @change="handleAlert" :isDisabled="false"></sel-checkbox>
     </div>
   </div>
 </template>
@@ -17,10 +17,10 @@
 <script>
   import headTop from '../../components/header.vue'
   import gridTable from '../../components/grid/main.vue'
-  import selCheckbox from '../../components/checkbox/main.vue'
   export default {
     data () {
       return {
+        checked1: 111111
       }
     },
     mounted () {
@@ -28,8 +28,12 @@
     },
     components: {
       headTop,
-      gridTable,
-      selCheckbox
+      gridTable
+    },
+    methods: {
+      handleAlert (e) {
+        console.log(e)
+      }
     }
   }
 </script>
