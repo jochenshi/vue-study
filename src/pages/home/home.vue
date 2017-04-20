@@ -9,7 +9,7 @@
     </el-row>
     <div class="content">
       <grid-table></grid-table>
-      <sel-checkbox v-model="checked1" @change="handleAlert" :isDisabled="false"></sel-checkbox>
+      <sel-checkbox v-model="checked1" text="选择1"></sel-checkbox>
     </div>
   </div>
 </template>
@@ -20,7 +20,7 @@
   export default {
     data () {
       return {
-        checked1: 111111
+        checked1: false
       }
     },
     mounted () {
@@ -32,7 +32,7 @@
     },
     methods: {
       handleAlert (e) {
-        console.log(e)
+        console.log(e, 111)
       }
     }
   }

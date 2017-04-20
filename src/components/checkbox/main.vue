@@ -6,29 +6,55 @@
             'sel-checkbox-wrapper-checked': checked
           }">
       <span class="sel-checkbox-hook"></span>
-      <input type="checkbox" 
+      <input type="checkbox"
+             v-if="!group"
              class="sel-checkbox-input" 
-             @click="checkClick($event)"
              @change="handleChange"
              :disabled="isDisabled"
+             :value="inValue"
              v-model="model" >
+      <input type="checkbox" 
+             v-if="group" 
+             :disabled="isDisabled" 
+             @change="handleChange">
     </span>
+    <div @click="handleClick" value="asd">asdasd</div>
     <span class="check-text" v-if="text">{{text}}</span>
+    <span>{{model}}</span>
   </label>
 </template>
 <script>
   export default {
     name: 'SelCheckbox',
+    props: {
+      isDisabled: {
+        type: Boolean,
+        default: false
+      },
+      checked: Boolean,
+      label: {
+        type: [String, Number, Boolean]
+      },
+      value: {
+        type: [String, Number, Boolean],
+        default: false
+      },
+      text: '',
+      inValue: {
+        type: [String, Number, Boolean]
+      } // 绑定的checkbox的值
+    },
     data () {
       return {
-        text: '多选框'
+        group: false,
+        model: [],
+        currentValue: this.value
       }
     },
-    props: {
-      isDisabled: Boolean,
-      checked: Boolean,
-      label: {},
-      value: {}
+    mounted () {
+      if (!this.group) {
+        this.updateModel()
+      }
     },
     methods: {
       checkClick ($event) {
@@ -36,12 +62,35 @@
         let par = $event.target.parentNode
         $(par).toggleClass('sel-checkbox-wrapper-checked')
       },
+      handleClick (e) {
+        console.log(e)
+      },
       handleChange (event) {
-        this.$emit('change', event)
+        if (this.disabled) {
+          return false
+        }
+        const checked = event.target.value
+        this.currentValue = checked
+        console.log(checked)
+        
+        this.$emit('input', checked)
+        if (this.group) {
+          this.$parent.change(this.model)
+        } else {
+          this.$emit('on-change', checked)
+        }
+      },
+      updateModel () {
+        this.currentValue = this.value
       }
     },
     created () {
       console.log(this.value)
+    },
+    watch: {
+      value () {
+        this.updateModel()
+      }
     }
   }
 </script>
