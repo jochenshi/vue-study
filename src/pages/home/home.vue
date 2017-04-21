@@ -9,7 +9,13 @@
     </el-row>
     <div class="content">
       <grid-table></grid-table>
-      <sel-checkbox v-model="checked1" text="选择1"></sel-checkbox>
+      <Checkbox v-model="checked1" text="选择1"></Checkbox>
+      <Checkbox-group v-model="checked2">
+        <Checkbox label="test1" text="text1"></Checkbox>
+        <Checkbox label="test2" text="text2"></Checkbox>
+        <Checkbox label="test3" text="text3"></Checkbox>
+      </Checkbox-group>
+      {{checked2}}
     </div>
   </div>
 </template>
@@ -20,7 +26,8 @@
   export default {
     data () {
       return {
-        checked1: false
+        checked1: true,
+        checked2: ['test1']
       }
     },
     mounted () {

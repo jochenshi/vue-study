@@ -3,40 +3,40 @@
     <span class="sel-checkbox-wrapper" 
           :class="{
             'is-disabled': isDisabled,
-            'sel-checkbox-wrapper-checked': checked
+            'sel-checkbox-wrapper-checked': currentValue
           }">
       <span class="sel-checkbox-hook"></span>
       <input type="checkbox"
              v-if="!group"
-             class="sel-checkbox-input" 
-             @change="handleChange"
+             class="sel-checkbox-input"
+             :checked="currentValue"
              :disabled="isDisabled"
-             :value="inValue"
-             v-model="model" >
-      <input type="checkbox" 
+             @change="handleChange">
+      <input type="checkbox"
+             class="sel-checkbox-input"
              v-if="group" 
              :disabled="isDisabled" 
+             :value="label"
+             v-model="model"
              @change="handleChange">
     </span>
-    <div @click="handleClick" value="asd">asdasd</div>
     <span class="check-text" v-if="text">{{text}}</span>
-    <span>{{model}}</span>
   </label>
 </template>
 <script>
+  import {findComponentUpward} from '../../utils/assist'
   export default {
-    name: 'SelCheckbox',
+    name: 'Checkbox',
     props: {
       isDisabled: {
         type: Boolean,
         default: false
       },
-      checked: Boolean,
       label: {
         type: [String, Number, Boolean]
       },
       value: {
-        type: [String, Number, Boolean],
+        type: Boolean,
         default: false
       },
       text: '',
@@ -48,28 +48,29 @@
       return {
         group: false,
         model: [],
-        currentValue: this.value
+        currentValue: this.value,
+        parent: findComponentUpward(this, 'CheckboxGroup')
       }
     },
     mounted () {
+      this.parent = findComponentUpward(this, 'CheckboxGroup')
       if (!this.group) {
         this.updateModel()
+        console.log(this.value, this.currentValue)
+      } else {
+        this.group = true
       }
     },
     methods: {
       checkClick ($event) {
-        /* this.checked = !this.checked */
         let par = $event.target.parentNode
         $(par).toggleClass('sel-checkbox-wrapper-checked')
-      },
-      handleClick (e) {
-        console.log(e)
       },
       handleChange (event) {
         if (this.disabled) {
           return false
         }
-        const checked = event.target.value
+        const checked = event.target.checked
         this.currentValue = checked
         console.log(checked)
         
@@ -83,9 +84,6 @@
       updateModel () {
         this.currentValue = this.value
       }
-    },
-    created () {
-      console.log(this.value)
     },
     watch: {
       value () {

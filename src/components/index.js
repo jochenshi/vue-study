@@ -1,15 +1,18 @@
 /**
  * Created by Jincheng on 2017/4/18.
  */
-let selCheckbox = require('./checkbox/main.vue')
+let Checkbox = require('./checkbox/main.vue')
+let CheckboxGroup = require('./checkbox/checkbox-group.vue')
 
 const install = function (Vue) {
-  Vue.component(selCheckbox.name, selCheckbox)
+  Vue.component(Checkbox.name, Checkbox)
+  Vue.component(CheckboxGroup.name, CheckboxGroup)
   
-  Vue.prototype.$checkbox = selCheckbox
+  Vue.prototype.$checkbox = Checkbox
 }
 
 module.exports = {
   install,
-  selCheckbox
+  Checkbox,
+  CheckboxGroup
 }
