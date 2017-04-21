@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="group-container">
     <slot></slot>
   </div>
 </template>
