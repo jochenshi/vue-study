@@ -21,6 +21,7 @@
              @change="handleChange">
     </span>
     <span class="check-text" v-if="text">{{text}}</span>
+    <span>{{model}}</span>
   </label>
 </template>
 <script>

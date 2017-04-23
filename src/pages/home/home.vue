@@ -16,6 +16,11 @@
         <Checkbox label="test3" text="text3"></Checkbox>
       </Checkbox-group>
       {{checked2}}
+      <br>
+      <Input>
+        <span slot="prepend">http://</span>
+        <span slot="append">.com</span>
+      </Input>
     </div>
   </div>
 </template>
