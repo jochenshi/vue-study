@@ -34,6 +34,36 @@
         closed: false,
         onClose: null
       }
+    },
+    watch: {
+      closed (newVal) {
+        if (newVal) {
+          // this.visible = false
+          this.$el.addEventListener('transitionend', this.destroyElement)
+        }
+      }
+    },
+    methods: {
+      destroyElement () {
+        this.$el.removeEventListener('transitionend', this.destroyElement)
+        this.$destroy(true)
+        this.$el.parentNode.removeChild(this.$el)
+      }
+    },
+    close () {
+      this.closed = true
+      if (typeof this.onClose === 'function') {
+        
+      }
+    },
+    startTimer () {
+      if (this.duration) {
+        this.timer = setTimeout(() => {
+          if (!this.closed) {
+            this.close()
+          }
+        }, this.duration)
+      }
     }
   }
 </script>
