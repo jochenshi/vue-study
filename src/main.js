@@ -8,11 +8,14 @@ import store from './store'
 import Messages from './components/message/main'
 import './assets/fonts/css/font-awesome.min.css'
 import index from './components/index'
+import Notices from './components/notice/main'
 
 Vue.config.productionTip = true
 Vue.use(ElementUI)
 Vue.component(Messages.name, Messages)
+Vue.component(Notices.name, Notices)
 Vue.prototype.$messages = Messages
+Vue.prototype.$notices = Notices
 index.install(Vue)
 
 new Vue({

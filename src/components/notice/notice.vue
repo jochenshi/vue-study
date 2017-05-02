@@ -6,7 +6,7 @@
          :class="customClass">
       <i class="s-notice-icon" v-if="type || iconClass"></i>
       <div class="s-notice-group">
-        <h2 class="e-notice-title" v-text="title"></h2>
+        <h2 class="e-notice-title" v-text="title">{{title}}</h2>
         <div class="e-notice-content">
           <slot></slot>
         </div>
@@ -16,16 +16,11 @@
   </transition>
 </template>
 <script>
-  let typeMap = {
-    success: 'circle-check',
-    info: 'information',
-    warning: 'warning',
-    error: 'circle-cross'
-  }
   export default {
+    name: 'Notice',
     data () {
       return {
-        title: '',
+        title: 'asd',
         message: '',
         duration: 4500,
         type: '',

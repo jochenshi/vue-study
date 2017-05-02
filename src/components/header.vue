@@ -42,6 +42,7 @@
           showClose: true,
           type: 'info'
         })
+        this.$notices()
       }
     }
   }
